@@ -13,10 +13,56 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\antlr4-runtime">
+      <UniqueIdentifier>{f0013ae4-2106-4498-ab32-ff3e2bc09d25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SOM.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMBaseVisitor.cpp">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.cpp">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMParser.cpp">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMVisitor.cpp">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\SOM.g4">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOM.interp">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOM.tokens">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.interp">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </None>
+    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.tokens">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMBaseVisitor.h">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.h">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMParser.h">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMVisitor.h">
+      <Filter>Source Files\antlr4-runtime</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
