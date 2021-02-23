@@ -1,124 +1,210 @@
 grammar SOM;
 
-/* Classes */
-classDefinition:
-    IDENTIFIER EQUALS superclass
+classdef:
+    Identifier Equal superclass
     instanceFields method*
-    (SEPARATOR classFields method*) ?
-    CLOSE_PAR
-;
+    ( Separator classFields classMethod* )?
+    EndTerm;
 
-superclass: IDENTIFIER? OPEN_PAR;
+superclass:
+    Identifier? NewTerm;
 
-instanceFields: (VBAR variable* VBAR)?;
-classFields: (VBAR variable* VBAR)?;
+instanceFields:
+    ( Or variable* Or )?;
 
-method: pattern EQUALS methodBlock;
+classFields:
+    ( Or variable* Or )?;
 
-methodBlock: OPEN_PAR blockContents? CLOSE_PAR;
+classMethod:
+    method;
+
+method:
+   pattern Equal ( Primitive | methodBlock );
+
+pattern:
+    unaryPattern | keywordPattern | binaryPattern;
+
+unaryPattern:
+    unarySelector;
+
+binaryPattern:
+    binarySelector argument;
+
+keywordPattern:
+    ( keyword argument )+;
+
+methodBlock:
+    NewTerm blockContents? EndTerm;
+
+unarySelector:
+    identifier;
+
+binarySelector:
+    Or | Comma | Minus | Equal | Not | And | Star | Div | Mod | Plus | More |
+    Less | At | Per | OperatorSequence;
+
+identifier:
+    Primitive | Identifier;
+
+keyword:
+    Keyword;
+
+argument:
+    variable;
+
 blockContents:
-    (VBAR localDefinitions VBAR)?
+    ( Or localDefs Or )?
     blockBody;
-localDefinitions: variable*;
-blockBody: 
-      RETURN result
-    | expression (PERIOD blockBody?)?;
-result: expression PERIOD?;
-expression: assignation | evaluation;
-assignation: assignments evaluation;
-assignments: assignment+;
-assignment: variable ASSIGN;
-evaluation: primary messages?;
 
-primary: variable | nestedTerm | nestedBlock | literal;
+localDefs:
+    variable*;
+
+blockBody:
+      Exit result
+    | expression ( Period blockBody? )?;
+
+result:
+    expression Period?;
+
+expression:
+    assignation | evaluation;
+
+assignation:
+    assignments evaluation;
+
+assignments:
+    assignment+;
+
+assignment:
+    variable Assign;
+
+evaluation:
+    primary messages?;
+
+primary:
+    variable | nestedTerm | nestedBlock | literal;
+
+variable:
+    identifier;
 
 messages:
       unaryMessage+ binaryMessage* keywordMessage?
     | binaryMessage+ keywordMessage?
     | keywordMessage;
-unaryMessage: IDENTIFIER;
-binaryMessage: binarySelector binaryOperand;
-binaryOperand: primary unaryMessage*;
-keywordMessage: (KEYWORD formula)+;
-formula: binaryOperand binaryMessage*;
-nestedTerm: OPEN_PAR expression CLOSE_PAR;
+
+unaryMessage:
+    unarySelector;
+
+binaryMessage:
+    binarySelector binaryOperand;
+
+binaryOperand:
+    primary unaryMessage*;
+
+keywordMessage:
+    ( keyword formula )+;
+
+formula:
+    binaryOperand binaryMessage*;
+
+nestedTerm:
+    NewTerm expression EndTerm;
+
+literal:
+    literalArray | literalSymbol | literalString | literalNumber;
+
+literalArray:
+    Pound NewTerm
+    literal*
+    EndTerm;
+
+literalNumber:
+    negativeDecimal | literalDecimal;
+
+literalDecimal:
+    literalInteger | literalDouble;
+
+negativeDecimal:
+    Minus literalDecimal;
+
+literalInteger:
+    Integer;
+
+literalDouble:
+    Double;
+
+literalSymbol:
+    Pound ( string | selector );
+
+literalString:
+    string;
+
+selector:
+    binarySelector | keywordSelector | unarySelector;
+
+keywordSelector:
+    Keyword | KeywordSequence;
+
+string:
+    STString;
 
 nestedBlock:
-    NEW_BLOCK blockPattern? blockContents? CLOSE_BLOCK;
-blockPattern: blockArgs VBAR;
-blockArgs: (COLON argument)+;
+    NewBlock blockPattern? blockContents? EndBlock;
 
-variable: IDENTIFIER;
+blockPattern:
+    blockArguments Or;
 
-// Pattern for method calling
-pattern: unaryPattern | keywordPattern | binaryPattern;
-unaryPattern: unarySelector;
-unarySelector: IDENTIFIER;
-// Some special binary operators
-binaryPattern: binarySelector argument;
-keywordPattern: (KEYWORD argument)+;
-binarySelector: 
-    VBAR | PLUS | MINUS | EQUALS | MULT | DIV | MOD |
-    GREATER | GREATER_EQ | LESS | LESS_EQ;
-argument: variable;
+blockArguments:
+    ( Colon argument )+;
 
-/* Literals */
-literal: literalNumber | literalString | literalArray | literalSymbol;
+/* Lexer */
 
-literalNumber: MINUS? (INTEGER | DOUBLE);
-
-literalString: STRING;
-
-literalArray: POUND NEW_BLOCK literal* CLOSE_BLOCK;
-
-literalSymbol: POUND (STRING | selector);
-
-selector: binarySelector | keywordSelector | unarySelector;
-keywordSelector: KEYWORD+;
-
-KEYWORD: IDENTIFIER COLON;
-IDENTIFIER: [\p{Alpha}] [\p{Alpha}0-9_]*;
-
-/* TERMINAL SYMBOLS */
-WHITESPACE: [\t\r\n]* -> skip;
-COMMENT: '"' ~["]* '"' -> skip;
-
-INTEGER: [0-9]+;
-DOUBLE: [0-9]+ '.' [0-9]+;
-STRING:
-    SIMPLE_QUOTE
-    ( '\\t'                     // Tab
-    | '\\n'                     // New line
-    | '\\\''                    // \'
-    | '\\\\'                    // \\
-    | ~('\'' | '\\') 
+Comment:   '"' ~["]* '"' -> skip;
+Whitespace : [ \t\r\n]+ -> skip ;
+Primitive: 'primitive';
+Identifier: [\p{Alpha}] [\p{Alpha}0-9_]*;
+Equal: '=';
+Separator: '----' '-'*;
+NewTerm: '(';
+EndTerm: ')';
+Or: '|';
+Comma: ',';
+Minus: '-';
+Not:   '~';
+And:   '&';
+Star:  '*';
+Div:   '/';
+Mod:   '\\';
+Plus:  '+';
+More:  '>';
+Less:  '<';
+At:    '@';
+Per:   '%';
+OperatorSequence: (
+    Not | And | Or | Star | Div |
+    Mod | Plus | Equal | More | Less |
+    Comma | At | Per | Minus )+;
+Colon: ':';
+NewBlock: '[';
+EndBlock: ']';
+Pound:  '#';
+Exit:   '^';
+Period: '.';
+Assign: ':=';
+Integer: [0-9]+;
+Double: [0-9]+ '.' [0-9]+;
+Keyword: Identifier Colon;
+KeywordSequence: Keyword+;
+STString:
+    '\''
+    (   '\\t'
+      | '\\b'
+      | '\\n'
+      | '\\r'
+      | '\\f'
+      | '\\0'
+      | '\\\''
+      | '\\\\'
+      |  ~('\''| '\\')
     )*
-    SIMPLE_QUOTE
-;
-
-PLUS: '+';
-MINUS: '-';
-MULT: '*';
-DIV: '/';
-MOD: '\\';
-EQUALS: '=';
-
-GREATER: '>';
-LESS: '<';
-GREATER_EQ: '>=';
-LESS_EQ: '<=';
-
-ASSIGN: ':=';
-SEPARATOR: '----';
-VBAR: '|';
-SIMPLE_QUOTE: '\'';
-COLON: ':';
-COMMA: ',';
-RETURN: '^';
-PERIOD: '.';
-POUND: '#';
-
-OPEN_PAR: '(';
-CLOSE_PAR: ')';
-NEW_BLOCK: '[';
-CLOSE_BLOCK: ']';
+    '\'';

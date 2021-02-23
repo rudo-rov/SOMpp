@@ -116,13 +116,15 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Rudolf\source\repos\SOM\SOM\third-party\antlr4-runtime\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)SOM\antlr4-runtime\runtime\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)bin\vs-2019\x64\Debug Static;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>antlr4-runtime.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ShowProgress>NotSet</ShowProgress>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,24 +144,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMBaseVisitor.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMParser.cpp" />
-    <ClCompile Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMVisitor.cpp" />
+    <ClCompile Include="antlr4-runtime\SOMBaseVisitor.cpp" />
+    <ClCompile Include="antlr4-runtime\SOMLexer.cpp" />
+    <ClCompile Include="antlr4-runtime\SOMParser.cpp" />
+    <ClCompile Include="antlr4-runtime\SOMVisitor.cpp" />
+    <ClCompile Include="ASTNodes.cpp" />
+    <ClCompile Include="CParseTreeConverter.cpp" />
     <ClCompile Include="SOM.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOM.interp" />
-    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOM.tokens" />
-    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.interp" />
-    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.tokens" />
-    <None Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\SOM.g4" />
+    <None Include="antlr4-runtime\SOM.interp" />
+    <None Include="antlr4-runtime\SOM.tokens" />
+    <None Include="antlr4-runtime\SOMLexer.interp" />
+    <None Include="antlr4-runtime\SOMLexer.tokens" />
+    <None Include="Examples\Hello.som" />
+    <None Include="SOM.g4" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMBaseVisitor.h" />
-    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMLexer.h" />
-    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMParser.h" />
-    <ClInclude Include="..\..\..\..\..\..\diplomka\som-thesis-impl\src\parsing\antlr4-runtime\SOMVisitor.h" />
+    <ClInclude Include="antlr4-runtime\SOMBaseVisitor.h" />
+    <ClInclude Include="antlr4-runtime\SOMLexer.h" />
+    <ClInclude Include="antlr4-runtime\SOMParser.h" />
+    <ClInclude Include="antlr4-runtime\SOMVisitor.h" />
+    <ClInclude Include="ASTNodes.h" />
+    <ClInclude Include="CParseTreeConverter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

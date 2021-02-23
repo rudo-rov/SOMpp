@@ -3,10 +3,16 @@
 
 #include <iostream>
 #include <fstream>
+#include <memory>
 
+#define ANTLR4CPP_STATIC // Needed when linking static antlr library
 #include "antlr4-runtime.h"
 #include "antlr4-runtime/SOMLexer.h"
 #include "antlr4-runtime/SOMParser.h"
+
+#include "CParseTreeConverter.h"
+#include "antlr4-runtime/SOMBaseVisitor.h"
+#include "ASTNodes.h"
 
 int main(int argc, char** argv)
 {
@@ -28,6 +34,13 @@ int main(int argc, char** argv)
     SOMLexer lexer(&inputStream);
     antlr4::CommonTokenStream tokens(&lexer);
     SOMParser parser(&tokens);
+
+    SOMParser::ClassdefContext* tree = parser.classdef();
+    som::CParseTreeConverter visitor;
+    som::ASTNode* ret = visitor.visitClassdef(tree).as<som::ASTNode*>();
+    som::nodePtr ast = std::unique_ptr<som::ASTNode>(ret);
+
+    return 0;
 }
 
 
