@@ -19,7 +19,7 @@ public:
   /**
    * Visit parse trees produced by SOMParser.
    */
-    virtual antlrcpp::Any visitClassDefinition(SOMParser::ClassDefinitionContext *context) = 0;
+    virtual antlrcpp::Any visitClassdef(SOMParser::ClassdefContext *context) = 0;
 
     virtual antlrcpp::Any visitSuperclass(SOMParser::SuperclassContext *context) = 0;
 
@@ -27,13 +27,33 @@ public:
 
     virtual antlrcpp::Any visitClassFields(SOMParser::ClassFieldsContext *context) = 0;
 
+    virtual antlrcpp::Any visitClassMethod(SOMParser::ClassMethodContext *context) = 0;
+
     virtual antlrcpp::Any visitMethod(SOMParser::MethodContext *context) = 0;
+
+    virtual antlrcpp::Any visitPattern(SOMParser::PatternContext *context) = 0;
+
+    virtual antlrcpp::Any visitUnaryPattern(SOMParser::UnaryPatternContext *context) = 0;
+
+    virtual antlrcpp::Any visitBinaryPattern(SOMParser::BinaryPatternContext *context) = 0;
+
+    virtual antlrcpp::Any visitKeywordPattern(SOMParser::KeywordPatternContext *context) = 0;
 
     virtual antlrcpp::Any visitMethodBlock(SOMParser::MethodBlockContext *context) = 0;
 
+    virtual antlrcpp::Any visitUnarySelector(SOMParser::UnarySelectorContext *context) = 0;
+
+    virtual antlrcpp::Any visitBinarySelector(SOMParser::BinarySelectorContext *context) = 0;
+
+    virtual antlrcpp::Any visitIdentifier(SOMParser::IdentifierContext *context) = 0;
+
+    virtual antlrcpp::Any visitKeyword(SOMParser::KeywordContext *context) = 0;
+
+    virtual antlrcpp::Any visitArgument(SOMParser::ArgumentContext *context) = 0;
+
     virtual antlrcpp::Any visitBlockContents(SOMParser::BlockContentsContext *context) = 0;
 
-    virtual antlrcpp::Any visitLocalDefinitions(SOMParser::LocalDefinitionsContext *context) = 0;
+    virtual antlrcpp::Any visitLocalDefs(SOMParser::LocalDefsContext *context) = 0;
 
     virtual antlrcpp::Any visitBlockBody(SOMParser::BlockBodyContext *context) = 0;
 
@@ -51,6 +71,8 @@ public:
 
     virtual antlrcpp::Any visitPrimary(SOMParser::PrimaryContext *context) = 0;
 
+    virtual antlrcpp::Any visitVariable(SOMParser::VariableContext *context) = 0;
+
     virtual antlrcpp::Any visitMessages(SOMParser::MessagesContext *context) = 0;
 
     virtual antlrcpp::Any visitUnaryMessage(SOMParser::UnaryMessageContext *context) = 0;
@@ -65,41 +87,35 @@ public:
 
     virtual antlrcpp::Any visitNestedTerm(SOMParser::NestedTermContext *context) = 0;
 
-    virtual antlrcpp::Any visitNestedBlock(SOMParser::NestedBlockContext *context) = 0;
-
-    virtual antlrcpp::Any visitBlockPattern(SOMParser::BlockPatternContext *context) = 0;
-
-    virtual antlrcpp::Any visitBlockArgs(SOMParser::BlockArgsContext *context) = 0;
-
-    virtual antlrcpp::Any visitVariable(SOMParser::VariableContext *context) = 0;
-
-    virtual antlrcpp::Any visitPattern(SOMParser::PatternContext *context) = 0;
-
-    virtual antlrcpp::Any visitUnaryPattern(SOMParser::UnaryPatternContext *context) = 0;
-
-    virtual antlrcpp::Any visitUnarySelector(SOMParser::UnarySelectorContext *context) = 0;
-
-    virtual antlrcpp::Any visitBinaryPattern(SOMParser::BinaryPatternContext *context) = 0;
-
-    virtual antlrcpp::Any visitKeywordPattern(SOMParser::KeywordPatternContext *context) = 0;
-
-    virtual antlrcpp::Any visitBinarySelector(SOMParser::BinarySelectorContext *context) = 0;
-
-    virtual antlrcpp::Any visitArgument(SOMParser::ArgumentContext *context) = 0;
-
     virtual antlrcpp::Any visitLiteral(SOMParser::LiteralContext *context) = 0;
-
-    virtual antlrcpp::Any visitLiteralNumber(SOMParser::LiteralNumberContext *context) = 0;
-
-    virtual antlrcpp::Any visitLiteralString(SOMParser::LiteralStringContext *context) = 0;
 
     virtual antlrcpp::Any visitLiteralArray(SOMParser::LiteralArrayContext *context) = 0;
 
+    virtual antlrcpp::Any visitLiteralNumber(SOMParser::LiteralNumberContext *context) = 0;
+
+    virtual antlrcpp::Any visitLiteralDecimal(SOMParser::LiteralDecimalContext *context) = 0;
+
+    virtual antlrcpp::Any visitNegativeDecimal(SOMParser::NegativeDecimalContext *context) = 0;
+
+    virtual antlrcpp::Any visitLiteralInteger(SOMParser::LiteralIntegerContext *context) = 0;
+
+    virtual antlrcpp::Any visitLiteralDouble(SOMParser::LiteralDoubleContext *context) = 0;
+
     virtual antlrcpp::Any visitLiteralSymbol(SOMParser::LiteralSymbolContext *context) = 0;
+
+    virtual antlrcpp::Any visitLiteralString(SOMParser::LiteralStringContext *context) = 0;
 
     virtual antlrcpp::Any visitSelector(SOMParser::SelectorContext *context) = 0;
 
     virtual antlrcpp::Any visitKeywordSelector(SOMParser::KeywordSelectorContext *context) = 0;
+
+    virtual antlrcpp::Any visitString(SOMParser::StringContext *context) = 0;
+
+    virtual antlrcpp::Any visitNestedBlock(SOMParser::NestedBlockContext *context) = 0;
+
+    virtual antlrcpp::Any visitBlockPattern(SOMParser::BlockPatternContext *context) = 0;
+
+    virtual antlrcpp::Any visitBlockArguments(SOMParser::BlockArgumentsContext *context) = 0;
 
 
 };

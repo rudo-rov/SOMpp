@@ -15,7 +15,7 @@
 class  SOMBaseVisitor : public SOMVisitor {
 public:
 
-  virtual antlrcpp::Any visitClassDefinition(SOMParser::ClassDefinitionContext *ctx) override {
+  virtual antlrcpp::Any visitClassdef(SOMParser::ClassdefContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -31,7 +31,27 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitClassMethod(SOMParser::ClassMethodContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitMethod(SOMParser::MethodContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitPattern(SOMParser::PatternContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitUnaryPattern(SOMParser::UnaryPatternContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBinaryPattern(SOMParser::BinaryPatternContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitKeywordPattern(SOMParser::KeywordPatternContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -39,11 +59,31 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitUnarySelector(SOMParser::UnarySelectorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBinarySelector(SOMParser::BinarySelectorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitIdentifier(SOMParser::IdentifierContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitKeyword(SOMParser::KeywordContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitArgument(SOMParser::ArgumentContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitBlockContents(SOMParser::BlockContentsContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitLocalDefinitions(SOMParser::LocalDefinitionsContext *ctx) override {
+  virtual antlrcpp::Any visitLocalDefs(SOMParser::LocalDefsContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -79,6 +119,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitVariable(SOMParser::VariableContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitMessages(SOMParser::MessagesContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -107,59 +151,7 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitNestedBlock(SOMParser::NestedBlockContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitBlockPattern(SOMParser::BlockPatternContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitBlockArgs(SOMParser::BlockArgsContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitVariable(SOMParser::VariableContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitPattern(SOMParser::PatternContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitUnaryPattern(SOMParser::UnaryPatternContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitUnarySelector(SOMParser::UnarySelectorContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitBinaryPattern(SOMParser::BinaryPatternContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitKeywordPattern(SOMParser::KeywordPatternContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitBinarySelector(SOMParser::BinarySelectorContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitArgument(SOMParser::ArgumentContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
   virtual antlrcpp::Any visitLiteral(SOMParser::LiteralContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitLiteralNumber(SOMParser::LiteralNumberContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitLiteralString(SOMParser::LiteralStringContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -167,7 +159,31 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitLiteralNumber(SOMParser::LiteralNumberContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitLiteralDecimal(SOMParser::LiteralDecimalContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNegativeDecimal(SOMParser::NegativeDecimalContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitLiteralInteger(SOMParser::LiteralIntegerContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitLiteralDouble(SOMParser::LiteralDoubleContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitLiteralSymbol(SOMParser::LiteralSymbolContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitLiteralString(SOMParser::LiteralStringContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -176,6 +192,22 @@ public:
   }
 
   virtual antlrcpp::Any visitKeywordSelector(SOMParser::KeywordSelectorContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitString(SOMParser::StringContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitNestedBlock(SOMParser::NestedBlockContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBlockPattern(SOMParser::BlockPatternContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual antlrcpp::Any visitBlockArguments(SOMParser::BlockArgumentsContext *ctx) override {
     return visitChildren(ctx);
   }
 
