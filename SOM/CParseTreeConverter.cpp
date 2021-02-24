@@ -31,15 +31,11 @@ namespace som {
 	}
 	antlrcpp::Any CParseTreeConverter::visitString(SOMParser::StringContext* ctx)
 	{
-		std::cout << "Visited string: " << ctx->STString()->toString() << std::endl;
-		//return new LiteralString(ctx->STString()->toString());
 		return makeNode<LiteralString>(ctx->STString()->toString());
 	}
 
 	antlrcpp::Any CParseTreeConverter::visitVariable(SOMParser::VariableContext* ctx)
 	{
-		std::cout << "Visited variable with identifier: " << visit(ctx->identifier()).as<std::string>() << std::endl;
-		//return new Variable(visit(ctx->identifier()).as<std::string>());
 		return makeNode<Variable>(visit(ctx->identifier()).as<std::string>());
 	}
 
@@ -92,8 +88,6 @@ namespace som {
 
 	antlrcpp::Any CParseTreeConverter::visitUnaryPattern(SOMParser::UnaryPatternContext* ctx)
 	{
-		std::cout << "Unary pattern: " << visit(ctx->unarySelector()->identifier()).as<std::string>() << std::endl;
-		//return new UnaryPattern(visit(ctx->unarySelector()->identifier()).as<std::string>());
 		return makeNode<UnaryPattern>(visit(ctx->unarySelector()->identifier()).as<std::string>());
 	}
 
@@ -143,7 +137,6 @@ namespace som {
 		else
 			type = BinaryOperation::Unknown;
 
-		//return new BinarySelector(type);
 		return makeNode<BinarySelector>(type);
 	}
 
@@ -164,10 +157,6 @@ namespace som {
 
 	antlrcpp::Any CParseTreeConverter::visitKeyword(SOMParser::KeywordContext* ctx)
 	{
-		std::cout << "Keyword: " << ctx->Keyword()->toString() << std::endl;
-		//return new Keyword(ctx->Keyword()->toString());
-
-
 		return makeNode<Keyword>(ctx->Keyword()->toString());
 	}
 
@@ -241,7 +230,6 @@ namespace som {
 		nodeVector result;
 		result.reserve(variables.size());
 		for (auto var : variables) {
-			//result.push_back(std::move(visit(var)));
 			ASTNode* varPtr = visit(var).as<ASTNode*>();
 			result.emplace_back(varPtr);
 		}
@@ -254,7 +242,6 @@ namespace som {
 		nodeVector arr;
 		arr.resize(ctx->literal().size());
 		for (auto lit : ctx->literal()) {
-			//arr.push_back(std::move(visitLiteral(lit)));
 			ASTNode* literalPtr = visit(lit).as<ASTNode*>();
 			arr.emplace_back(literalPtr);
 		}
@@ -392,7 +379,6 @@ namespace som {
 			keywords.emplace_back(visit(ctx->keyword().at(i)).as<ASTNode*>());
 			formulas.emplace_back(visit(ctx->formula().at(i)).as<ASTNode*>());
 		}
-		//return new KeywordMessage(keywords, formulas);
 		return makeNode<KeywordMessage>(keywords, formulas);
 	}
 
